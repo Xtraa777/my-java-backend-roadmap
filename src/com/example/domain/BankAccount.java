@@ -24,7 +24,7 @@ public class BankAccount {
     public void withdraw(double amount) {
         if (amount > 0 && this.balance >= amount) {
             this.balance -= amount;
-            System.out.println(amount + "원을 입금했습니다.");
+            System.out.println(amount + "원을 출금했습니다.");
             System.out.println("현재 잔액: " + balance + "원");
         } else {
             System.out.println("잔액이 부족하거나 유효하지 않은 금액입니다.");
