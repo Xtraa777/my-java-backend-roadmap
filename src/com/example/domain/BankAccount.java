@@ -1,6 +1,7 @@
 package com.example.domain;
 
 public class BankAccount {
+
     private String accountNumber;
     private double balance;
     private String ownerName;
