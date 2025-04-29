@@ -1,4 +1,4 @@
-package com.example.domain;
+package week1;
 
 public class BankAccount {
 
