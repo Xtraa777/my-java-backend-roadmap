@@ -5,8 +5,8 @@ My Java Backend Roadmap
 디렉토리 설명
 ---
 ```bash
-src/
-├── study // 실습, 복습
+src
+├── study      # 실습, 복습
 
 ```
 
