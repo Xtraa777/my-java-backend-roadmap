@@ -16,9 +16,7 @@ public class PaymentService {
 
         if (flag) {
             System.out.println("결제가 성공적으로 완료되었습니다.");
-            if (payStrategy instanceof CreditCardStrategy) {
-                ((CreditCardStrategy) payStrategy).applyDiscount();
-            }
+            payStrategy.performPostAction();
         } else {
             System.out.println("결제가 실패되었습니다.");
         }

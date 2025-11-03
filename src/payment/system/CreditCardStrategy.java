@@ -17,4 +17,9 @@ public class CreditCardStrategy extends AbstractCardPayment {
     public void applyDiscount() {
         System.out.println("신용카드 프로모션 10% 할인을 적용합니다.");
     }
+
+    @Override
+    public void performPostAction() {
+        this.applyDiscount();
+    }
 }

@@ -16,4 +16,8 @@ public abstract class AbstractCardPayment implements PayStrategy {
         logTransaction();
         return true;
     }
+
+    @Override
+    public void performPostAction() {
+    }
 }
