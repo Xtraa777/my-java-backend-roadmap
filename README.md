@@ -6,7 +6,7 @@
 ```bash
 src
 ├── study        # 실습, 복습
-├── javaoop      # 스프링 입문을 위한 자바 객체 지향의 원리와 이해
+├── javaoop      # [Book]스프링 입문을 위한 자바 객체 지향의 원리와 이해
 ├── payment      # Java 다형성 및 OCP 원칙 학습: 간단한 결제 시스템
 ```
 
