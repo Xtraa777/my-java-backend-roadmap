@@ -14,36 +14,14 @@ public class DiscountMain {
 
         DiscountService discountService = new DiscountService();
 
-        System.out.println("--- [GOLD 회원 20000원 주문] ---");
-        try {
-            int goldDiscount = discountService.calculateDiscount(goldUser, 20000);
-            System.out.println("GOLD 회원의 할인액: " + goldDiscount + "원");
-            System.out.println("리소스 정리 완료");
-        } catch (DiscountException e) {
-            System.out.println("[오류] 실패: " + e.getMessage());
-        }
+        runDiscountTest(discountService, goldUser, 20000, "[GOLD 회원 20000원 주문]");
+        System.out.println();
+        runDiscountTest(discountService, basicUser, 500, "[BASIC 회원 500원 주문 (예외)]");
+        System.out.println();
+        runDiscountTest(discountService, basicUser, 2000, "[BASIC 회원 2000원 주문]");
         System.out.println();
 
-        System.out.println("--- [BASIC 회원 500원 주문] ---");
-        try {
-            int basicDiscount = discountService.calculateDiscount(basicUser, 500);
-            System.out.println("BASIC 회원의 할인액: " + basicDiscount + "원");
-            System.out.println("리소스 정리 완료");
-        } catch (DiscountException e) {
-            System.out.println("[오류] 실패: " + e.getMessage());
-        }
-        System.out.println();
-
-        System.out.println("--- [BASIC 회원 2000원 주문] ---");
-        try {
-            int basicDiscount = discountService.calculateDiscount(basicUser, 2000);
-            System.out.println("BASIC 회원의 할인액: " + basicDiscount + "원");
-            System.out.println("리소스 정리 완료");
-        } catch (DiscountException e) {
-            System.out.println("[오류] 실패: " + e.getMessage());
-        }
-        System.out.println();
-
+        // 익명 클래스 시나리오는 별도로
         System.out.println("--- [여름 이벤트 5000원 주문] ---");
         DiscountPolicy eventPolicy = new DiscountPolicy() {
             @Override
@@ -51,7 +29,23 @@ public class DiscountMain {
                 return 500;
             }
         };
-        int eventDiscount = eventPolicy.applyDiscount(5000);
-        System.out.println("이벤트 할인액: " + eventDiscount + "원");
+        int eventDiscountAmount = eventPolicy.applyDiscount(5000);
+        System.out.println("[이벤트] 익명 클래스 할인액: " + eventDiscountAmount + "원");
+    }
+
+    /**
+     * @param service 할인 서비스
+     * @param user 회원
+     * @param price 가격
+     * @param testTitle 테스트 시나리오 제목
+     */
+    private static void runDiscountTest(DiscountService service, User user, int price, String testTitle) {
+        System.out.println("--- " + testTitle + " ---");
+        try {
+            int discountAmount = service.calculateDiscount(user, price);
+            System.out.println("[정상] " + user.grade() + " 회원의 할인액: " + discountAmount + "원");
+        } catch (DiscountException e) {
+            System.out.println("[오류] 실패: " + e.getMessage());
+        }
     }
 }

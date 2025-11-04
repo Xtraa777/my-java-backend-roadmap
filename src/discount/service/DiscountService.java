@@ -16,13 +16,11 @@ public class DiscountService {
     }
 
     public int calculateDiscount(User user, int price) throws DiscountException {
+        if (price < 1000) {
+            throw new DiscountException("1000원 미만 상품은 할인 적용이 불가능합니다.");
+        }
         try (MockResource resource = new MockResource()) {
-            if (price < 1000) {
-                throw new DiscountException("1000원 미만 상품은 할인 적용이 불가능합니다.");
-            }
             return getPolicy(user).applyDiscount(price);
-        } catch (DiscountException de) {
-            throw de;
         } catch (Exception e) {
             throw new RuntimeException("리소스 정리 중 예기치 않은 오류 발생", e);
         }
